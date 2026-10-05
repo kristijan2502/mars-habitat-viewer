@@ -65,7 +65,7 @@ function HabitatsPage() {
           <MetricBars />
           <div className="detail-notes"><div><span className="small-label">● Mission advantage</span><p>{selected.systems.join(" · ")}</p></div><div><span className="small-label">▲ Mission consideration</span><p>Dust storms, cold nights, and radiation require careful engineering.</p></div></div>
         </div>
-        <aside className="detail-aside"><div className="detail-panel"><div className="section-label">Regional conditions</div><div className="conditions"><span>Estimated water ice <strong>Observed</strong></span><span>Solar exposure <strong>Favorable</strong></span><span>Terrain stability <strong>Moderate</strong></span></div></div><img src={selected.image} alt={`${selected.name} habitat concept`} /><div className="section-label">Habitat concept / {selected.region}</div><Button variant="mission" onClick={() => setDetail(false)}>Return to globe <ArrowRight size={15} /></Button></aside>
+        <aside className="detail-aside"><div className="detail-panel"><div className="section-label">Concept conditions</div><div className="conditions"><span>Estimated water ice <strong>Possible</strong></span><span>Solar exposure <strong>Favorable</strong></span><span>Terrain stability <strong>Moderate</strong></span></div></div><img src={selected.image} alt={`${selected.name} habitat concept`} /><div className="section-label">Habitat concept / {selected.region}</div><Button variant="mission" onClick={() => setDetail(false)}>Return to globe <ArrowRight size={15} /></Button></aside>
       </div>
     </> : <div className="mission-grid">
       <aside className="mission-left">
