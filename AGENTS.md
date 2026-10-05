@@ -8,3 +8,7 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Keep shared navigation in the root route and the three visitor experiences on separate routes, because each screen has its own purpose and shareable URL.
+- Use one reusable React Three Fiber globe for both exploration screens, because both need the same realistic Mars surface and orbit interaction.
+- Serve uploaded photographs and downloaded texture through asset pointers, because media should not bloat the source repository.
