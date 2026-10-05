@@ -14,9 +14,10 @@ export function SiteLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="site-shell">
       <header className="site-header page-gutter">
-        <Link to="/" className="brand" aria-label="Mars Atlas home"><span className="brand-symbol" />MARS / ATLAS</Link>
+        <Link to="/" className="brand" aria-label="Mars Atlas home"><span className="brand-symbol" />ARES ATLAS</Link>
         <div className="header-right">
-          <span className="header-tag">An exploration of the red planet</span>
+          <nav className="header-nav" aria-label="Main navigation"><Link to="/explore">Explore</Link><Link to="/habitats">Habitat sites</Link><Link to="/">Mission guide</Link></nav>
+          <span className="header-tag">● Mars live</span>
           <Button variant="ghost" className="menu-trigger p-0 hover:bg-transparent" onClick={() => setOpen(true)} aria-label="Open navigation menu">
             <span>Explore menu</span><Menu size={22} strokeWidth={1.5} />
           </Button>
