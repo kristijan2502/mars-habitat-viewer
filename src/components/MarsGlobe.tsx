@@ -1,6 +1,6 @@
-import { Suspense, useEffect, useRef, useState } from "react";
+import { Suspense, useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Environment, Html, Lightformer, OrbitControls, useTexture, Stars } from "@react-three/drei";
+import { Environment, Lightformer, OrbitControls, useTexture, Stars } from "@react-three/drei";
 import * as THREE from "three";
 import marsMap from "@/assets/mars-surface.jpg.asset.json";
 import { habitats, type Habitat } from "@/lib/habitats";
@@ -16,19 +16,12 @@ function Marker({ habitat, active, onSelect }: { habitat: Habitat; active: boole
   const x = Math.sin(habitat.lon) * Math.cos(habitat.lat) * radius;
   const y = Math.sin(habitat.lat) * radius;
   const z = Math.cos(habitat.lon) * Math.cos(habitat.lat) * radius;
-  const [hovered, setHovered] = useState(false);
-
-  useEffect(() => {
-    if (hovered) document.body.style.cursor = "pointer";
-    return () => { document.body.style.cursor = ""; };
-  }, [hovered]);
-
   return (
     <group position={[x, y, z]}>
       <mesh
         onClick={(event) => { event.stopPropagation(); onSelect(habitat); }}
-        onPointerOver={(event) => { event.stopPropagation(); setHovered(true); }}
-        onPointerOut={() => setHovered(false)}
+        onPointerOver={(event) => { event.stopPropagation(); document.body.style.cursor = "pointer"; }}
+        onPointerOut={() => { document.body.style.cursor = ""; }}
       >
         <sphereGeometry args={[0.075, 16, 16]} />
         <meshBasicMaterial color={active ? "#f1d3a5" : "#e39a68"} />
@@ -37,11 +30,6 @@ function Marker({ habitat, active, onSelect }: { habitat: Habitat; active: boole
         <torusGeometry args={[active ? 0.125 : 0.11, 0.008, 8, 32]} />
         <meshBasicMaterial color="#e39a68" transparent opacity={active ? 1 : 0.8} />
       </mesh>
-      {(active || hovered) && (
-        <Html center distanceFactor={8} position={[0, 0.23, 0]} style={{ pointerEvents: "none" }}>
-          <div className="marker-label">{habitat.name}</div>
-        </Html>
-      )}
     </group>
   );
 }
