@@ -162,6 +162,11 @@
 .globe-fact strong { display: block; color: var(--foreground); font: 500 24px var(--font-display); margin-top: 8px; }
 .globe-side-note { color: var(--muted-foreground); font: 13px/1.7 var(--font-body); margin-top: auto; }
 .marker-label { border: 1px solid var(--mars); background: var(--background); color: var(--foreground); padding: 5px 8px; font: 10px var(--font-mono); text-transform: uppercase; letter-spacing: .08em; white-space: nowrap; cursor: pointer; }
+.habitat-popup { position: absolute; z-index: 5; right: 24px; bottom: 48px; width: min(330px, calc(100% - 48px)); padding: 19px 20px 20px; border: 1px solid var(--border); background: var(--card); box-shadow: var(--shadow-overlay); }
+.habitat-popup-header { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.habitat-popup strong { display: block; font: 500 23px var(--font-display); margin-top: 8px; }
+.habitat-popup p { color: var(--muted-foreground); font: 12px/1.65 var(--font-body); margin: 10px 0 14px; }
+.habitat-popup > span { color: var(--ice); font: 10px var(--font-mono); text-transform: uppercase; letter-spacing: .08em; }
 
 @media (max-width: 900px) {
   .explorer-layout, .globe-layout { grid-template-columns: 1fr; }
