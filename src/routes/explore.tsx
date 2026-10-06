@@ -4,9 +4,9 @@ import { MarsGlobe } from "@/components/MarsGlobe";
 export const Route = createFileRoute("/explore")({
   ssr: false,
   head: () => ({ meta: [
-    { title: "Explore Mars in 3D — ARES ATLAS" },
+    { title: "Explore Mars in 3D — RED HORIZON" },
     { name: "description", content: "Rotate, zoom, and explore a realistic interactive 3D view of the Red Planet." },
-    { property: "og:title", content: "Explore Mars in 3D — ARES ATLAS" },
+    { property: "og:title", content: "Explore Mars in 3D — RED HORIZON" },
     { property: "og:description", content: "See the surface of Mars from every angle in an interactive 3D globe." },
     { property: "og:type", content: "website" },
     { name: "twitter:card", content: "summary_large_image" },
