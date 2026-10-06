@@ -7,9 +7,9 @@ import globePhoto from "@/assets/mars.habitat.jpeg.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({ meta: [
-    { title: "ARES ATLAS — Discover the Red Planet" },
+    { title: "RED HORIZON — Discover the Red Planet" },
     { name: "description", content: "Discover Mars: its landscapes, atmosphere, and the future of human habitats. Explore interactive 3D maps of the Red Planet." },
-    { property: "og:title", content: "ARES ATLAS — Discover the Red Planet" },
+    { property: "og:title", content: "RED HORIZON — Discover the Red Planet" },
     { property: "og:description", content: "Explore Mars, its extraordinary landscape, and imagined human habitats through interactive 3D experiences." },
     { property: "og:type", content: "website" },
     { name: "twitter:card", content: "summary_large_image" },

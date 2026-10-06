@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import logoAsset from "@/assets/red-horizon-logo.jpeg.asset.json";
 
 const links = [
   { to: "/" as const, title: "The Red Planet", description: "A first look at Mars" },
@@ -14,7 +15,7 @@ export function SiteLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="site-shell">
       <header className="site-header page-gutter">
-        <Link to="/" className="brand" aria-label="Mars Atlas home"><span className="brand-symbol" />ARES ATLAS</Link>
+        <Link to="/" className="brand" aria-label="Red Horizon home"><img className="brand-logo" src={logoAsset.url} alt="" />RED HORIZON</Link>
         <div className="header-right">
           <nav className="header-nav" aria-label="Main navigation"><Link to="/explore">Explore</Link><Link to="/habitats">Habitat sites</Link><Link to="/">Mission guide</Link></nav>
           <span className="header-tag">● Mars live</span>
@@ -24,7 +25,7 @@ export function SiteLayout({ children }: { children: React.ReactNode }) {
         </div>
       </header>
       {children}
-      <footer className="footer page-gutter"><span>MARS / ATLAS — THE RED PLANET</span><span>EXPLORE WHAT LIES BEYOND <ArrowUpRight className="inline-block size-3" /></span></footer>
+      <footer className="footer page-gutter"><span>RED HORIZON — THE MARS INITIATIVE</span><span>EXPLORE WHAT LIES BEYOND <ArrowUpRight className="inline-block size-3" /></span></footer>
       {open && <div className="menu-backdrop" onClick={() => setOpen(false)} aria-hidden="true" />}
       {open && (
         <aside className="side-panel" aria-label="Site navigation">
