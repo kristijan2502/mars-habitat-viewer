@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ExploreRouteImport } from './routes/explore'
 import { Route as HabitatsRouteImport } from './routes/habitats'
+import { Route as MoonsRouteImport } from './routes/moons'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -28,35 +29,44 @@ const HabitatsRoute = HabitatsRouteImport.update({
   path: '/habitats',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MoonsRoute = MoonsRouteImport.update({
+  id: '/moons',
+  path: '/moons',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/explore': typeof ExploreRoute
   '/habitats': typeof HabitatsRoute
+  '/moons': typeof MoonsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/explore': typeof ExploreRoute
   '/habitats': typeof HabitatsRoute
+  '/moons': typeof MoonsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/explore': typeof ExploreRoute
   '/habitats': typeof HabitatsRoute
+  '/moons': typeof MoonsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/explore' | '/habitats'
+  fullPaths: '/' | '/explore' | '/habitats' | '/moons'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/explore' | '/habitats'
-  id: '__root__' | '/' | '/explore' | '/habitats'
+  to: '/' | '/explore' | '/habitats' | '/moons'
+  id: '__root__' | '/' | '/explore' | '/habitats' | '/moons'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ExploreRoute: typeof ExploreRoute
   HabitatsRoute: typeof HabitatsRoute
+  MoonsRoute: typeof MoonsRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -82,6 +92,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof HabitatsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/moons': {
+      id: '/moons'
+      path: '/moons'
+      fullPath: '/moons'
+      preLoaderRoute: typeof MoonsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -89,6 +106,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ExploreRoute: ExploreRoute,
   HabitatsRoute: HabitatsRoute,
+  MoonsRoute: MoonsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
