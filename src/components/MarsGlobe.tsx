@@ -12,23 +12,49 @@ type MarsGlobeProps = {
 };
 
 function Marker({ habitat, active, onSelect }: { habitat: Habitat; active: boolean; onSelect: (habitat: Habitat) => void }) {
-  const radius = 2.035;
+  const radius = 2.02;
   const x = Math.sin(habitat.lon) * Math.cos(habitat.lat) * radius;
   const y = Math.sin(habitat.lat) * radius;
   const z = Math.cos(habitat.lon) * Math.cos(habitat.lat) * radius;
+  const normal = new THREE.Vector3(x, y, z).normalize();
+  const quaternion = new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, 1, 0), normal);
+  const hull = active ? "#f1d3a5" : "#e39a68";
+  const handleClick = (event: { stopPropagation: () => void }) => { event.stopPropagation(); onSelect(habitat); };
   return (
-    <group position={[x, y, z]}>
+    <group position={[x, y, z]} quaternion={quaternion}>
+      {/* pressurized dome house */}
       <mesh
-        onClick={(event) => { event.stopPropagation(); onSelect(habitat); }}
+        position={[0, 0.045, 0]}
+        onClick={handleClick}
         onPointerOver={(event) => { event.stopPropagation(); document.body.style.cursor = "pointer"; }}
         onPointerOut={() => { document.body.style.cursor = ""; }}
       >
-        <sphereGeometry args={[0.075, 16, 16]} />
-        <meshBasicMaterial color={active ? "#f1d3a5" : "#e39a68"} />
+        <sphereGeometry args={[0.075, 20, 12, 0, Math.PI * 2, 0, Math.PI / 2]} />
+        <meshStandardMaterial color={hull} roughness={0.55} metalness={0.25} />
       </mesh>
+      {/* base ring the dome sits on */}
+      <mesh position={[0, 0.02, 0]} onClick={handleClick}>
+        <cylinderGeometry args={[0.082, 0.09, 0.04, 20]} />
+        <meshStandardMaterial color="#8a5a42" roughness={0.8} />
+      </mesh>
+      {/* side airlock module */}
+      <mesh position={[0.095, 0.025, 0]} rotation={[0, 0, Math.PI / 2]} onClick={handleClick}>
+        <capsuleGeometry args={[0.022, 0.05, 6, 12]} />
+        <meshStandardMaterial color={hull} roughness={0.6} metalness={0.2} />
+      </mesh>
+      {/* comms antenna */}
+      <mesh position={[-0.05, 0.11, 0]}>
+        <cylinderGeometry args={[0.004, 0.004, 0.09, 6]} />
+        <meshBasicMaterial color="#f1d3a5" />
+      </mesh>
+      <mesh position={[-0.05, 0.16, 0]}>
+        <sphereGeometry args={[0.012, 8, 8]} />
+        <meshBasicMaterial color={active ? "#ffe9c4" : "#e39a68"} />
+      </mesh>
+      {/* ground ring highlight */}
       <mesh rotation={[Math.PI / 2, 0, 0]}>
-        <torusGeometry args={[active ? 0.125 : 0.11, 0.008, 8, 32]} />
-        <meshBasicMaterial color="#e39a68" transparent opacity={active ? 1 : 0.8} />
+        <torusGeometry args={[active ? 0.14 : 0.125, 0.007, 8, 32]} />
+        <meshBasicMaterial color="#e39a68" transparent opacity={active ? 1 : 0.7} />
       </mesh>
     </group>
   );
