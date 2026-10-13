@@ -11,4 +11,4 @@
 - [x] Open habitat photographs in a larger viewer.
 - [x] Add NASA Eyes Mars and Mars moons menu entries with two moon photographs and descriptions.
 - [x] Replace the habitat globe markers with 2D red ruby gems.
-- [ ] Apply the ten requested habitat names in order and write name-inspired descriptions.
+- [x] Apply the ten requested habitat names in order and write name-inspired descriptions.
