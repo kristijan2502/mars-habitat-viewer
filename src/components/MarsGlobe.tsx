@@ -1,6 +1,6 @@
 import { Suspense, useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Environment, Lightformer, OrbitControls, useTexture, Stars } from "@react-three/drei";
+import { Billboard, Environment, Lightformer, OrbitControls, useTexture, Stars } from "@react-three/drei";
 import * as THREE from "three";
 import marsMap from "@/assets/mars-surface.jpg.asset.json";
 import { habitats, type Habitat } from "@/lib/habitats";
@@ -16,46 +16,51 @@ function Marker({ habitat, active, onSelect }: { habitat: Habitat; active: boole
   const x = Math.sin(habitat.lon) * Math.cos(habitat.lat) * radius;
   const y = Math.sin(habitat.lat) * radius;
   const z = Math.cos(habitat.lon) * Math.cos(habitat.lat) * radius;
-  const normal = new THREE.Vector3(x, y, z).normalize();
-  const quaternion = new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, 1, 0), normal);
-  const hull = active ? "#f1d3a5" : "#e39a68";
+  const ruby = useRef<THREE.Group>(null);
+  useFrame((state) => {
+    if (!ruby.current) return;
+    const pulse = active ? 1 + 0.16 * Math.sin(state.clock.elapsedTime * 3.4) : 1;
+    ruby.current.scale.setScalar(pulse);
+  });
   const handleClick = (event: { stopPropagation: () => void }) => { event.stopPropagation(); onSelect(habitat); };
   return (
-    <group position={[x, y, z]} quaternion={quaternion}>
-      {/* pressurized dome house */}
-      <mesh
-        position={[0, 0.045, 0]}
-        onClick={handleClick}
-        onPointerOver={(event) => { event.stopPropagation(); document.body.style.cursor = "pointer"; }}
-        onPointerOut={() => { document.body.style.cursor = ""; }}
-      >
-        <sphereGeometry args={[0.075, 20, 12, 0, Math.PI * 2, 0, Math.PI / 2]} />
-        <meshStandardMaterial color={hull} roughness={0.55} metalness={0.25} />
+    <group position={[x, y, z]}>
+      {/* anchor dot holding the gem to the surface */}
+      <mesh onClick={handleClick}>
+        <sphereGeometry args={[0.016, 8, 8]} />
+        <meshBasicMaterial color={active ? "#ffd1dc" : "#ff2a4d"} />
       </mesh>
-      {/* base ring the dome sits on */}
-      <mesh position={[0, 0.02, 0]} onClick={handleClick}>
-        <cylinderGeometry args={[0.082, 0.09, 0.04, 20]} />
-        <meshStandardMaterial color="#8a5a42" roughness={0.8} />
-      </mesh>
-      {/* side airlock module */}
-      <mesh position={[0.095, 0.025, 0]} rotation={[0, 0, Math.PI / 2]} onClick={handleClick}>
-        <capsuleGeometry args={[0.022, 0.05, 6, 12]} />
-        <meshStandardMaterial color={hull} roughness={0.6} metalness={0.2} />
-      </mesh>
-      {/* comms antenna */}
-      <mesh position={[-0.05, 0.11, 0]}>
-        <cylinderGeometry args={[0.004, 0.004, 0.09, 6]} />
-        <meshBasicMaterial color="#f1d3a5" />
-      </mesh>
-      <mesh position={[-0.05, 0.16, 0]}>
-        <sphereGeometry args={[0.012, 8, 8]} />
-        <meshBasicMaterial color={active ? "#ffe9c4" : "#e39a68"} />
-      </mesh>
-      {/* ground ring highlight */}
-      <mesh rotation={[Math.PI / 2, 0, 0]}>
-        <torusGeometry args={[active ? 0.14 : 0.125, 0.007, 8, 32]} />
-        <meshBasicMaterial color="#e39a68" transparent opacity={active ? 1 : 0.7} />
-      </mesh>
+      <Billboard>
+        <group ref={ruby} position={[0, 0.15, 0]}>
+          {/* faceted ruby body */}
+          <mesh
+            scale={[1, 0.72, 0.5]}
+            onClick={handleClick}
+            onPointerOver={(event) => { event.stopPropagation(); document.body.style.cursor = "pointer"; }}
+            onPointerOut={() => { document.body.style.cursor = ""; }}
+          >
+            <octahedronGeometry args={[0.078, 0]} />
+            <meshStandardMaterial
+              color={active ? "#ff3b5c" : "#c9184a"}
+              roughness={0.12}
+              metalness={0.15}
+              emissive={active ? "#7f0d2b" : "#40001a"}
+              emissiveIntensity={active ? 1.5 : 0.6}
+              flatShading
+            />
+          </mesh>
+          {/* inner light core */}
+          <mesh scale={[0.42, 0.32, 0.24]} onClick={handleClick}>
+            <octahedronGeometry args={[0.078, 0]} />
+            <meshBasicMaterial color={active ? "#ffe3ea" : "#ff7591"} transparent opacity={0.9} />
+          </mesh>
+          {/* soft red halo */}
+          <mesh scale={[1.8, 1.3, 0.2]}>
+            <octahedronGeometry args={[0.078, 0]} />
+            <meshBasicMaterial color={active ? "#ff2a4d" : "#9d0b32"} transparent opacity={active ? 0.18 : 0.1} blending={THREE.AdditiveBlending} depthWrite={false} />
+          </mesh>
+        </group>
+      </Billboard>
     </group>
   );
 }
