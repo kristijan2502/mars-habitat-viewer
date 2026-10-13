@@ -32,7 +32,7 @@ function Marker({ habitat, active, onSelect }: { habitat: Habitat; active: boole
         <meshBasicMaterial color={active ? "#ffd1dc" : "#ff0f2f"} />
       </mesh>
       <Billboard>
-        <group ref={ruby} position={[0, 0.18, 0]}>
+        <group ref={ruby} position={[0, 0.24, 0]}>
           {/* faceted ruby body */}
           <mesh
             scale={[1, 0.72, 0.5]}
