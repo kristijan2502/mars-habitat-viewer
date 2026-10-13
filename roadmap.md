@@ -12,3 +12,4 @@
 - [x] Add NASA Eyes Mars and Mars moons menu entries with two moon photographs and descriptions.
 - [x] Replace the habitat globe markers with 2D red ruby gems.
 - [x] Apply the ten requested habitat names in order and write name-inspired descriptions.
+- [x] Assign every habitat to a sidebar filter by name: ice-named to Ice access, Solace Base and Solar Oasis to Solar potential, the rest to Large settlements.
