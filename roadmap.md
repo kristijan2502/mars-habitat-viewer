@@ -10,3 +10,4 @@
 - [x] Enlarge and blend the logo edges.
 - [x] Open habitat photographs in a larger viewer.
 - [x] Add NASA Eyes Mars and Mars moons menu entries with two moon photographs and descriptions.
+- [ ] Replace the habitat globe markers with 2D red ruby gems.

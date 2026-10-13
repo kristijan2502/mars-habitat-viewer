@@ -1,6 +1,6 @@
 import { Suspense, useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Environment, Lightformer, OrbitControls, useTexture, Stars } from "@react-three/drei";
+import { Billboard, Environment, Lightformer, OrbitControls, useTexture, Stars } from "@react-three/drei";
 import * as THREE from "three";
 import marsMap from "@/assets/mars-surface.jpg.asset.json";
 import { habitats, type Habitat } from "@/lib/habitats";
