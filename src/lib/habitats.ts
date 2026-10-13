@@ -183,11 +183,12 @@ export type Habitat = (typeof habitats)[number];
 export const habitatFilters = ["All sites", "Ice access", "Solar potential", "Large settlements"] as const;
 export type HabitatFilter = (typeof habitatFilters)[number];
 
-// Ice access follows the name: only habitats literally named for ice (Genesis Ice Station, Polar One Ice Station).
+// Ice access: habitats named for ice, plus Polaris Bunker.
 const ICE_IN_NAME = /\bice\b/i;
-const SOLAR_NAMED = ["Solace Base", "Solar Oasis"];
+const ICE_NAMED_EXTRA = ["Polaris Bunker"];
+const SOLAR_NAMED = ["Solace Base", "Solar Oasis", "Anchor Hub"];
 
-const hasIceInName = (habitat: Habitat) => ICE_IN_NAME.test(habitat.name);
+const hasIceInName = (habitat: Habitat) => ICE_IN_NAME.test(habitat.name) || ICE_NAMED_EXTRA.includes(habitat.name);
 const hasSolarPotential = (habitat: Habitat) => SOLAR_NAMED.includes(habitat.name);
 
 export function matchesFilter(habitat: Habitat, filter: HabitatFilter) {
