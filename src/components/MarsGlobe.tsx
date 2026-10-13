@@ -17,9 +17,10 @@ function Marker({ habitat, active, onSelect }: { habitat: Habitat; active: boole
   const y = Math.sin(habitat.lat) * radius;
   const z = Math.cos(habitat.lon) * Math.cos(habitat.lat) * radius;
   const ruby = useRef<THREE.Group>(null);
+  const BASE = 1.25;
   useFrame((state) => {
     if (!ruby.current) return;
-    const pulse = active ? 1 + 0.16 * Math.sin(state.clock.elapsedTime * 3.4) : 1;
+    const pulse = active ? BASE * (1 + 0.16 * Math.sin(state.clock.elapsedTime * 3.4)) : BASE;
     ruby.current.scale.setScalar(pulse);
   });
   const handleClick = (event: { stopPropagation: () => void }) => { event.stopPropagation(); onSelect(habitat); };
@@ -27,11 +28,11 @@ function Marker({ habitat, active, onSelect }: { habitat: Habitat; active: boole
     <group position={[x, y, z]}>
       {/* anchor dot holding the gem to the surface */}
       <mesh onClick={handleClick}>
-        <sphereGeometry args={[0.016, 8, 8]} />
-        <meshBasicMaterial color={active ? "#ffd1dc" : "#ff2a4d"} />
+        <sphereGeometry args={[0.021, 8, 8]} />
+        <meshBasicMaterial color={active ? "#ffd1dc" : "#ff0f2f"} />
       </mesh>
       <Billboard>
-        <group ref={ruby} position={[0, 0.15, 0]}>
+        <group ref={ruby} position={[0, 0.24, 0]}>
           {/* faceted ruby body */}
           <mesh
             scale={[1, 0.72, 0.5]}
@@ -39,25 +40,25 @@ function Marker({ habitat, active, onSelect }: { habitat: Habitat; active: boole
             onPointerOver={(event) => { event.stopPropagation(); document.body.style.cursor = "pointer"; }}
             onPointerOut={() => { document.body.style.cursor = ""; }}
           >
-            <octahedronGeometry args={[0.078, 0]} />
+            <octahedronGeometry args={[0.095, 0]} />
             <meshStandardMaterial
-              color={active ? "#ff3b5c" : "#c9184a"}
-              roughness={0.12}
-              metalness={0.15}
-              emissive={active ? "#7f0d2b" : "#40001a"}
-              emissiveIntensity={active ? 1.5 : 0.6}
+              color={active ? "#ff1f3f" : "#e00033"}
+              roughness={0.1}
+              metalness={0.12}
+              emissive={active ? "#c2002a" : "#70001c"}
+              emissiveIntensity={active ? 2.2 : 1.15}
               flatShading
             />
           </mesh>
           {/* inner light core */}
           <mesh scale={[0.42, 0.32, 0.24]} onClick={handleClick}>
-            <octahedronGeometry args={[0.078, 0]} />
-            <meshBasicMaterial color={active ? "#ffe3ea" : "#ff7591"} transparent opacity={0.9} />
+            <octahedronGeometry args={[0.095, 0]} />
+            <meshBasicMaterial color={active ? "#fff0f3" : "#ff3d5e"} transparent opacity={0.92} />
           </mesh>
           {/* soft red halo */}
           <mesh scale={[1.8, 1.3, 0.2]}>
-            <octahedronGeometry args={[0.078, 0]} />
-            <meshBasicMaterial color={active ? "#ff2a4d" : "#9d0b32"} transparent opacity={active ? 0.18 : 0.1} blending={THREE.AdditiveBlending} depthWrite={false} />
+            <octahedronGeometry args={[0.095, 0]} />
+            <meshBasicMaterial color="#ff1233" transparent opacity={active ? 0.3 : 0.2} blending={THREE.AdditiveBlending} depthWrite={false} />
           </mesh>
         </group>
       </Billboard>
