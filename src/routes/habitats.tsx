@@ -3,7 +3,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ArrowLeft, ArrowRight, Bookmark, Search, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { MarsGlobe } from "@/components/MarsGlobe";
-import { habitats, type Habitat } from "@/lib/habitats";
+import { habitatFilters, habitats, matchesFilter, type Habitat, type HabitatFilter } from "@/lib/habitats";
 import landscape from "@/assets/mars-landscape.jpg";
 import { ExpandablePhoto } from "@/components/ExpandablePhoto";
 
@@ -42,12 +42,11 @@ function HabitatsPage() {
   const [detail, setDetail] = useState(false);
   const [popup, setPopup] = useState(false);
   const [query, setQuery] = useState("");
-  const [filter, setFilter] = useState("All sites");
+  const [filter, setFilter] = useState<HabitatFilter>("All sites");
   const [saved, setSaved] = useState<string[]>([]);
   const filtered = useMemo(() => habitats.filter((habitat) => {
     const matchesQuery = `${habitat.name} ${habitat.region}`.toLowerCase().includes(query.toLowerCase());
-    const matchesFilter = filter === "All sites" || (filter === "Ice access" && habitat.metrics[0] >= 80) || (filter === "Solar potential" && habitat.metrics[1] >= 85) || (filter === "Large settlements" && Number.parseInt(habitat.capacity) >= 100);
-    return matchesQuery && matchesFilter;
+    return matchesQuery && matchesFilter(habitat, filter);
   }), [query, filter]);
   const select = (habitat: Habitat) => { setSelected(habitat); setPopup(true); };
   const toggleSaved = () => setSaved((current) => current.includes(selected.id) ? current.filter((id) => id !== selected.id) : [...current, selected.id]);
@@ -72,7 +71,7 @@ function HabitatsPage() {
       <aside className="mission-left">
         <label className="mission-search"><Search size={15} /><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search regions or settlements" aria-label="Search habitat sites" /></label>
         <div className="filter-heading">Habitat filters <Button variant="ghost" className="filter-reset" onClick={() => { setFilter("All sites"); setQuery(""); }}>Reset</Button></div>
-        <div className="mission-filters">{["All sites", "Ice access", "Solar potential", "Large settlements"].map((item) => <Button key={item} variant="ghost" className={filter === item ? "filter-pill active" : "filter-pill"} onClick={() => setFilter(item)}>{item}</Button>)}</div>
+        <div className="mission-filters">{habitatFilters.map((item) => <Button key={item} variant="ghost" className={filter === item ? "filter-pill active" : "filter-pill"} onClick={() => setFilter(item)}>{item}</Button>)}</div>
         <div className="site-heading">Saved sites <span>{saved.length} saved</span></div>
         <div className="site-heading">Habitat candidates <span>{filtered.length} sites found</span></div>
         <div className="mission-sites">{filtered.map((habitat, index) => <Button key={habitat.id} variant="ghost" className={selected.id === habitat.id ? "mission-site active" : "mission-site"} onClick={() => select(habitat)}><span className="site-number">0{index + 1}</span><span><strong>{habitat.name}</strong><small>{habitat.region}</small></span><Bookmark size={13} fill={saved.includes(habitat.id) ? "currentColor" : "none"} /></Button>)}</div>
