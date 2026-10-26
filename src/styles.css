@@ -194,7 +194,7 @@
 .site-number { color: var(--mars-bright); font: 11px var(--font-mono); width: 25px; height: 25px; border: 1px solid var(--border); display: grid; place-items: center; border-radius: 50%; flex: none; }
 .mission-site.active .site-number { background: var(--mars); color: var(--primary-foreground); }
 .mission-site > span:nth-child(2) { min-width: 0; flex: 1; }
-.mission-site strong { display: block; font: 500 11px var(--font-body); overflow: hidden; text-overflow: ellipsis; }
+.mission-site strong { display: block; font: 500 13px var(--font-body); overflow: hidden; text-overflow: ellipsis; text-align: center; }
 .mission-site small { display: block; color: var(--muted-foreground); font: 9px var(--font-body); margin-top: 3px; }
 .mission-site svg { color: var(--muted-foreground); }
 .mission-footnote { display: block; color: var(--muted-foreground); font: 9px var(--font-mono); text-transform: uppercase; margin-top: 25px; }
