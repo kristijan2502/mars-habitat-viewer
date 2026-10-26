@@ -45,7 +45,7 @@ function HomePage() {
     </section>
 
     <section className="intro-section page-gutter">
-      <div><div className="eyebrow">The world next door</div><h2 className="intro-heading">A planet with a story written in stone.</h2></div>
+      <div><div className="eyebrow"></div><h2 className="intro-heading">Our red planetary neighbour :</h2></div>
       <div className="intro-body"><p>Mars is one of the most explored bodies in our solar system, and it's the only planet where we've sent rovers to roam the alien landscape. NASA missions have found lots of evidence that Mars was much wetter and warmer, with a thicker atmosphere, billions of years ago.{"\n\n"}Mars was named by the ancient Romans for their god of war because its reddish color was reminiscent of blood.</p><p>With a radius of 2,106 miles (3,390 kilometers), Mars is about half the size of Earth. If Earth were the size of a nickel, Mars would be about as big as a raspberry.</p></div>
     </section>
 
