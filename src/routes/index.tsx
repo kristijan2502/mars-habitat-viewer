@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import landscape from "@/assets/mars-landscape.jpg";
 import habitatPhoto from "@/assets/mars.3.jpeg.asset.json";
@@ -34,7 +34,6 @@ function HomePage() {
         <p className="hero-copy">A world of ancient riverbeds, immense volcanoes, and horizons that stretch beyond imagination. Get to know the planet that might one day become our next home.</p>
         <div className="hero-actions">
           <Button asChild variant="mission" size="lg"><Link to="/explore">EXPLORE MARS <ArrowUpRight /></Link></Button>
-          <Button asChild variant="missionOutline" size="lg"><Link to="/habitats">Discover habitats <ArrowRight /></Link></Button>
         </div>
       </div>
       <div className="hero-bottom"><span>18.4° N / 77.5° E · Martian surface</span><span></span></div>
