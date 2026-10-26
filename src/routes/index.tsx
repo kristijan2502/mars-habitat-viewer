@@ -37,7 +37,7 @@ function HomePage() {
           <Button asChild variant="missionOutline" size="lg"><Link to="/habitats">Discover habitats <ArrowRight /></Link></Button>
         </div>
       </div>
-      <div className="hero-bottom"><span>18.4° N / 77.5° E · Martian surface</span><span>{"\n"}</span></div>
+      <div className="hero-bottom"><span>18.4° N / 77.5° E · Martian surface</span><span></span></div>
     </section>
 
     <section className="stats-band page-gutter" aria-label="Mars at a glance">
@@ -46,14 +46,14 @@ function HomePage() {
 
     <section className="intro-section page-gutter">
       <div><div className="eyebrow"></div><h2 className="intro-heading">Our red planetary neighbour :</h2></div>
-      <div className="intro-body"><p>Mars is one of the most explored bodies in our solar system, and it's the only planet where we've sent rovers to roam the alien landscape. NASA missions have found lots of evidence that Mars was much wetter and warmer, with a thicker atmosphere, billions of years ago.{"\n\n"}Mars was named by the ancient Romans for their god of war because its reddish color was reminiscent of blood.</p><p>With a radius of 2,106 miles (3,390 kilometers), Mars is about half the size of Earth. If Earth were the size of a nickel, Mars would be about as big as a raspberry.</p></div>
+      <div className="intro-body"><p>Mars is one of the most explored bodies in our solar system, and it's the only planet where we've sent rovers to roam the alien landscape. NASA missions have found lots of evidence that Mars was much wetter and warmer, with a thicker atmosphere, billions of years ago. Mars was named by the ancient Romans for their god of war because its reddish color was reminiscent of blood.</p><p>With a radius of 2,106 miles (3,390 kilometers), Mars is about half the size of Earth. If Earth were the size of a nickel, Mars would be about as big as a raspberry.</p></div>
     </section>
 
     <section className="feature-band page-gutter">
       <div className="eyebrow"></div><h2 className="feature-heading">Choose your mission.</h2>
       <div className="feature-grid">
         <Link className="feature-card" to="/habitats"><img src={habitatPhoto.url} alt="Futuristic human settlement on Mars" loading="lazy" /><div className="feature-card-content"><div><div className="small-label">{"\u00a0"}</div><h3>Habitats on Mars</h3><p>Find the places where life could take root.</p></div><span className="feature-arrow"><ArrowUpRight size={20} /></span></div></Link>
-        <Link className="feature-card" to="/explore"><img src={globePhoto.url} alt="Expedition across the Martian surface" loading="lazy" /><div className="feature-card-content"><div><div className="small-label">{"\n"}</div><h3>Explore the planet</h3><p>Explore a 3D model of Mars.</p></div><span className="feature-arrow"><ArrowUpRight size={20} /></span></div></Link>
+        <Link className="feature-card" to="/explore"><img src={globePhoto.url} alt="Expedition across the Martian surface" loading="lazy" /><div className="feature-card-content"><div><div className="small-label"></div><h3>Explore the planet</h3><p>Explore a 3D model of Mars.</p></div><span className="feature-arrow"><ArrowUpRight size={20} /></span></div></Link>
       </div>
     </section>
   </main>;
