@@ -81,7 +81,7 @@ export const habitats = [
     lat: 0.02,
     lon: 1.28,
     image: baseFive.url,
-    description: "A solar-powered pilot station exploring how scarce local ice could support the beginnings of a permanent settlement on Solis Planum. Dust-clearing collectors power water prospecting and cold storage, with reserves needed where ice availability remains limited.",
+    description: "This is the cooling center is designed to keep temperature inside Mars's habitats comfortable and safe for living. Advanced cooling systems regulate heat from equipment, sunlight, and daily activities.",
     systems: ["Solar concentrators", "Battery vault", "Grid control", "Dust clearing"],
     capacity: "12 crew",
     score: 88,
