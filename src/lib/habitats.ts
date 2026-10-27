@@ -83,7 +83,7 @@ export const habitats = [
     image: baseFive.url,
     description: "This is the cooling center is designed to keep temperature inside Mars's habitats comfortable and safe for living. Advanced cooling systems regulate heat from equipment, sunlight, and daily activities.",
     systems: ["Solar concentrators", "Battery vault", "Grid control", "Dust clearing"],
-    capacity: "12 crew",
+    capacity: "10 crew",
     score: 88,
     solar: "781 W/m²",
     ice: "43%",
