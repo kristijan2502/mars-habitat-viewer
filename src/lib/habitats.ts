@@ -149,7 +149,7 @@ export const habitats = [
     lat: -0.29,
     lon: -2.52,
     image: baseOne.url,
-    description: "An underground oasis in Noctis Labyrinthus, where illuminated hydroponic terraces bring a sense of daylight into protected lava tubes. Surface solar collectors supplement the geothermal loop, sustaining gardens, homes, and workshops behind natural radiation shielding.",
+    description: "The Solar Oasis is a resource center for water. Water would be one of the most valuable essentials. Future settlers could recycle used water and investigate ways to extract it. Which would be needed for drinking, cooking, plants, producing oxygen...",
     systems: ["Lava-tube shielding", "Hydroponic terraces", "Archive vault", "Geothermal loop"],
     capacity: "320 residents",
     score: 91,
