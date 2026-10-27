@@ -168,7 +168,7 @@ export const habitats = [
     image: baseSix.url,
     description: "This station is a laboratory where scientists conduct experiments and study Mars. It is equipped with advanced technology to analyze soil, water and rock samples. Here, researchers can investigate the planet's environment.",
     systems: ["University labs", "Rover fleet", "Emergency center", "Closed-loop farms"],
-    capacity: "210 residents",
+    capacity: "35 residents",
     score: 87,
     solar: "683 W/m²",
     ice: "69%",
