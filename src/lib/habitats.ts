@@ -98,7 +98,7 @@ export const habitats = [
     lat: -0.56,
     lon: 0.37,
     image: baseSix.url,
-    description: "The first compact district of a proposed city on Utopia Planitia, built around a reliable supply of buried ice. Insulated tunnels link crew homes with water processing and heat recovery, laying the foundations for a community that could one day stretch across the horizon.",
+    description: "Horizon City is a vision of humanity's future  on Mars, it is a large settlement designed for everyday life. It has residential zones, medical  centers, community spaces, it offers a place where people can live, work and build a new society beneath the Martian sky.\n\n",
     systems: ["Thermal drills", "Water refinery", "Heat recovery", "Buried tunnels"],
     capacity: "20 crew",
     score: 90,
