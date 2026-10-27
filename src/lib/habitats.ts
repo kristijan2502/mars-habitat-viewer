@@ -151,7 +151,7 @@ export const habitats = [
     image: baseOne.url,
     description: "The Solar Oasis is a resource center for water. Water would be one of the most valuable essentials. Future settlers could recycle used water and investigate ways to extract it. Which would be needed for drinking, cooking, plants, producing oxygen...",
     systems: ["Lava-tube shielding", "Hydroponic terraces", "Archive vault", "Geothermal loop"],
-    capacity: "320 residents",
+    capacity: "20 residents",
     score: 91,
     solar: "492 W/m²",
     ice: "73%",
