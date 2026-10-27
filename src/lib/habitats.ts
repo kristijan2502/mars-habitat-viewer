@@ -49,7 +49,7 @@ export const habitats = [
     image: baseThree.url,
     description: "A specially designed bunker for protection against radiation, extreme temperatures and powerful storms. These protected spaces would help astronauts stay safe and prepared for unexpected challenges on Mars.",
     systems: ["Sample vault", "Clean laboratory", "Algae bioreactor", "Drone hangar"],
-    capacity: "14 crew",
+    capacity: "100 crew",
     score: 92,
     solar: "704 W/m²",
     ice: "82%",
