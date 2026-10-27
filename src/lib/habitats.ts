@@ -64,7 +64,7 @@ export const habitats = [
     lat: -0.38,
     lon: -0.32,
     image: baseFour.url,
-    description: "Anchored into the walls of Valles Marineris, this hub provides a secure meeting point for canyon expeditions. Pressurized lifts connect sheltered living spaces with the valley floor, while seismic instruments monitor the rock supporting the settlement.",
+    description: "The anchor hub's base is lined with solar panels that provide electricity for lighting, heating, communication and equipment. These technologies provide reliable energy during dust storms when sunlight is limited.",
     systems: ["Rock shielding", "Pressure lifts", "Seismic array", "Cliff observatory"],
     capacity: "24 crew",
     score: 84,
