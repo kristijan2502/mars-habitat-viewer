@@ -47,7 +47,7 @@ export const habitats = [
     lat: -0.13,
     lon: 0.78,
     image: baseThree.url,
-    description: "A sheltered bunker beside Jezero’s ancient delta, named for the guiding star rather than a polar location. Protected crew quarters and sealed sample vaults give astrobiologists a dependable refuge while they investigate traces of Mars’s watery past.",
+    description: "A specially designed bunker for protection against radiation, extreme temperatures and powerful storms. These protected spaces would help astronauts stay safe and prepared for unexpected challenges on Mars.",
     systems: ["Sample vault", "Clean laboratory", "Algae bioreactor", "Drone hangar"],
     capacity: "14 crew",
     score: 92,
