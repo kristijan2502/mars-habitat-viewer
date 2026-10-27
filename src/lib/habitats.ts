@@ -115,7 +115,7 @@ export const habitats = [
     lat: 0.19,
     lon: 2.28,
     image: baseTwo.url,
-    description: "A broad residential complex on the Isidis impact basin floor, with observation galleries looking toward the distant crater rim. A pressurized commons connects homes, schools, a hospital, and fabrication halls into a permanent community beneath the Martian skyline.",
+    description: "The skyline Crater Complex is a place that combines innovative architecture with natural protection. Mars's architecture has a futuristic design with advanced technology. Every structure is carefully planned to balance safety, sustainability and comfort.",
     systems: ["Civic commons", "Regional hospital", "Industrial fabrication", "Transit loop"],
     capacity: "180 residents",
     score: 94,
