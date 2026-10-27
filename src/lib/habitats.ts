@@ -30,7 +30,7 @@ export const habitats = [
     lat: 0.36,
     lon: 0.1,
     image: baseTwo.url,
-    description: "Named for the delicate clouds drifting high above Mars, this Elysium outpost studies atmospheric change and airborne dust. Researchers launch instruments from the volcanic plains while serviced rovers and cargo landers keep the station supplied.",
+    description: "Cirrus research post features a futuristic architectural design focused on scientific discovery and protection from Mars' harsh environment. It's modular structures surround a secure central core, connected by enclosed corridors that allow  scientists to move safely between laboratories and living quarters.  ",
     systems: ["Methane refinery", "Landing control", "Rover service", "Cargo robotics"],
     capacity: "18 crew",
     score: 86,
