@@ -15,7 +15,7 @@ export const habitats = [
     image: baseOne.url,
     description: "A quiet refuge on the Southside of Mars, designed to provide the crew with food and nutrition. The Solace base has indoor farms and special greenhouses that help astronauts grow vegetables and other crops in a controlled enviroment.",
     systems: ["Ice extraction", "Subsurface bunks", "Geochemistry lab", "Storm radar"],
-    capacity: "8 crew",
+    capacity: "15 crew",
     score: 89,
     solar: "612 W/m²",
     ice: "97%",
