@@ -13,7 +13,7 @@ export const habitats = [
     lat: 0.25,
     lon: -0.8,
     image: baseOne.url,
-    description: "A quiet refuge on the Arcadia plains, designed to help small crews recover between demanding field missions. Sheltered sleeping cells, a communal retreat, and nearby ice extraction provide comfort and essential water far from Earth.",
+    description: "A quiet refuge on the Southside of Mars, designed to provide the crew with food and nutrition. The Solace base has indoor farms and special greenhouses that help astronauts grow vegetables and other crops in a controlled enviroment.",
     systems: ["Ice extraction", "Subsurface bunks", "Geochemistry lab", "Storm radar"],
     capacity: "8 crew",
     score: 89,
