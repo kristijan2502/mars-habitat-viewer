@@ -166,7 +166,7 @@ export const habitats = [
     lat: -0.09,
     lon: 2.92,
     image: baseSix.url,
-    description: "The first station in the proposed Polar One ice-research program, located in Gale Crater rather than at a Martian pole. University teams use rover surveys and excavated laboratories to investigate local water resources, while closed-loop farms and an emergency center support the wider crew community.",
+    description: "This station is a laboratory where scientists conduct experiments and study Mars. It is equipped with advanced technology to analyze soil, water and rock samples. Here, researchers can investigate the planet's environment.",
     systems: ["University labs", "Rover fleet", "Emergency center", "Closed-loop farms"],
     capacity: "210 residents",
     score: 87,
