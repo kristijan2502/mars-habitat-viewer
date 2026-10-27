@@ -32,7 +32,7 @@ export const habitats = [
     image: baseTwo.url,
     description: "The Cirrus Society is built on cooperation, equality and a shared vision of the future. People live and work together, share responsibilities and resources to create a thriving community. Schools are designed to prepare the next generation or life beyond Earth. Students learn together and work on creative projects.  ",
     systems: ["Methane refinery", "Landing control", "Rover service", "Cargo robotics"],
-    capacity: "18 crew",
+    capacity: "60 crew",
     score: 86,
     solar: "735 W/m²",
     ice: "61%",
