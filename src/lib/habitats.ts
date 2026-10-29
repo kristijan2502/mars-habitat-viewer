@@ -4,6 +4,9 @@ import baseThree from "@/assets/mars.12.jpeg.asset.json";
 import baseFour from "@/assets/mars.123.jpeg.asset.json";
 import baseFive from "@/assets/mars.habit.jpeg.asset.json";
 import baseSix from "@/assets/mars.habitat.jpeg.asset.json";
+import skylineGreenhouse from "@/assets/skyline-crater-greenhouse.jpg.asset.json";
+import polarOneTowers from "@/assets/polar-one-towers.jpg.asset.json";
+import solaceRingSettlement from "@/assets/solace-ring-settlement.jpg.asset.json";
 
 export const habitats = [
   {
