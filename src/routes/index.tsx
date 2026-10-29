@@ -20,7 +20,7 @@ export const Route = createFileRoute("/")({
 const stats = [
   ["04", "MARS IS THE FOURTH PLANET FROM THE SUN", ""],
   ["24h 37m", "ONE MARTIAN DAY IS CALLED A SOL", ""],
-  ["−63°C", "AVERAGE TEMPERATURE ACROSS IS", ""],
+  ["−65°C", "AVERAGE TEMPERATURE ACROSS IS", ""],
   ["Phobos & Deimos", "TWO MOONS", ""],
 ];
 
