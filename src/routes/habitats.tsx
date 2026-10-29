@@ -55,7 +55,7 @@ function HabitatsPage() {
     {detail ? <>
       <div className="mission-banner" style={{ backgroundImage: `linear-gradient(0deg, var(--background), transparent 90%), url(${landscape})` }}>
         <div className="mission-banner-top"><Button variant="ghost" onClick={() => setDetail(false)}><ArrowLeft size={15} /> Explore / Red Horizon</Button><div className="mission-banner-actions"><Button variant="missionOutline" onClick={toggleSaved}><Bookmark size={14} /> {saved.includes(selected.id) ? "Saved" : "Save site"}</Button></div></div>
-        <div className="mission-banner-bottom"><div><div className="small-label">● Habitat concept · Site study</div><h1>{selected.name}</h1><span className="section-label">{selected.region} · Proposed future settlement</span></div><div className="banner-score"><Score value={selected.score} /><span>Illustrative suitability<br />{selected.score >= 90 ? "High potential" : "Viable candidate"}</span></div></div>
+        <div className="mission-banner-bottom"><div><div className="small-label">{"\n"}</div><h1>{selected.name}</h1><span className="section-label" /></div><div className="banner-score"><Score value={selected.score} /><span>Illustrative suitability<br />{selected.score >= 90 ? "High potential" : "Viable candidate"}</span></div></div>
       </div>
       <div className="detail-layout">
         <div className="detail-main">
@@ -65,7 +65,7 @@ function HabitatsPage() {
           <MetricBars habitat={selected} />
           <div className="detail-notes"><div><span className="small-label">● Mission advantage</span><p>{selected.systems.join(" · ")}</p></div><div><span className="small-label">▲ Mission consideration</span><p>Dust storms, cold nights, and radiation require careful engineering.</p></div></div>
         </div>
-        <aside className="detail-aside"><div className="detail-panel"><div className="section-label">Concept conditions</div><div className="conditions"><span>Estimated water ice <strong>{selected.conditions[0]}</strong></span><span>Solar exposure <strong>{selected.conditions[1]}</strong></span><span>Terrain stability <strong>{selected.conditions[2]}</strong></span></div></div><ExpandablePhoto src={selected.image} alt={`${selected.name} habitat concept`} title={selected.name} /><div className="section-label">Habitat concept / {selected.region}</div><Button variant="mission" onClick={() => setDetail(false)}>Return to globe <ArrowRight size={15} /></Button></aside>
+        <aside className="detail-aside"><div className="detail-panel"><div className="section-label">Concept conditions</div><div className="conditions"><span>Water presence<br /><br /><strong>{selected.conditions[0]}</strong></span><span>Solar exposure <strong>{selected.conditions[1]}</strong></span><span>Terrain stability <strong>{selected.conditions[2]}</strong></span></div></div><ExpandablePhoto src={selected.image} alt={`${selected.name} habitat concept`} title={selected.name} /><div className="section-label">Habitat concept / {selected.region}</div><Button variant="mission" onClick={() => setDetail(false)}>Return to globe <ArrowRight size={15} /></Button></aside>
       </div>
     </> : <div className="mission-grid">
       <aside className="mission-left">
