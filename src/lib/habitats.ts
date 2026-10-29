@@ -153,7 +153,7 @@ export const habitats = [
     lat: -0.29,
     lon: -2.52,
     image: solarOasisMars.url,
-    systems: ["Lava-tube shielding", "Hydroponic terraces", "Archive vault", "Geothermal loop"],
+    description: "The Solar Oasis is a resource center for water. Water would be one of the most valuable essentials. Future settlers could recycle used water and investigate ways to extract it. Which would be needed for drinking, cooking, plants, producing oxygen...",
     capacity: "20 residents",
     score: 91,
     solar: "492 W/m²",
