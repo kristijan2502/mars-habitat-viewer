@@ -36,7 +36,7 @@ function HomePage() {
           <Button asChild variant="mission" size="lg"><Link to="/explore">EXPLORE MARS <ArrowUpRight /></Link></Button>
         </div>
       </div>
-      <div className="hero-bottom"><span>18.4° N / 77.5° E · Martian surface</span><span></span></div>
+      <div className="hero-bottom"><span>{"\n"}</span><span></span></div>
     </section>
 
     <section className="stats-band page-gutter" aria-label="Mars at a glance">
