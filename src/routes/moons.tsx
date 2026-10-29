@@ -27,7 +27,7 @@ function MoonsPage() {
         <figcaption>
           <span className="small-label"> THE INNER MOON</span>
           <h2>Phobos</h2>
-          <p>Phobos is the larger and closer of Mars’s two moons. This irregular, heavily cratered world completes an orbit in about 7 hours and 39 minutes. Its enormous Stickney crater and long surface grooves stand out in this view from NASA’s Mars Reconnaissance Orbiter.</p>
+          <p> Phobos is the larger of Mars’ two moons and orbits the planet several times a day. Its surface is covered with dark, carbon-rich material and dust caused by meteorite impacts. Its most prominent feature is Stickney Crater, a large impact crater. Phobos has no atmosphere and experiences extreme temperature variations. It is slowly approaching Mars and may eventually collide with the planet or break apart to form a ring. Its origin remains uncertain, although it may be a captured asteroid.</p>
           <span className="moon-credit">{"\n"}</span>
         </figcaption>
       </figure>
