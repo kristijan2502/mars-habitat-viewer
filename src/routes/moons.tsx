@@ -17,27 +17,27 @@ export const Route = createFileRoute("/moons")({
 function MoonsPage() {
   return <main className="moons-page page-gutter">
     <header className="moons-heading">
-      <div className="eyebrow">Planetary companions / 02</div>
-      <h1>Mars’s Moons.</h1>
+      <div className="eyebrow">PLANETARY COMPANIONS</div>
+      <h1>Mars’s Moons</h1>
       <p>Two small worlds orbiting the Red Planet.</p>
     </header>
     <div className="moons-grid">
       <figure className="moon-figure">
         <img className="moon-photo" src={phobos.url} alt="NASA color photograph of Phobos, showing its large Stickney crater and surface grooves" />
         <figcaption>
-          <span className="small-label">01 / The inner moon</span>
+          <span className="small-label"> THE INNER MOON</span>
           <h2>Phobos</h2>
           <p>Phobos is the larger and closer of Mars’s two moons. This irregular, heavily cratered world completes an orbit in about 7 hours and 39 minutes. Its enormous Stickney crater and long surface grooves stand out in this view from NASA’s Mars Reconnaissance Orbiter.</p>
-          <span className="moon-credit">NASA/JPL-Caltech/University of Arizona · HiRISE · PIA10368</span>
+          <span className="moon-credit">{"\n"}</span>
         </figcaption>
       </figure>
       <figure className="moon-figure">
         <img className="moon-photo" src={deimos.url} alt="Two enhanced-color NASA views of Deimos, the smaller moon of Mars" />
         <figcaption>
-          <span className="small-label">02 / The outer moon</span>
+          <span className="small-label"> THE OUTER MOON</span>
           <h2>Deimos</h2>
           <p>Deimos is the smaller, more distant moon, taking about 30 hours to circle Mars. A blanket of loose dust and rock gives its surface a smoother appearance than Phobos. These enhanced-color spacecraft views reveal subtle differences in its surface material.</p>
-          <span className="moon-credit">NASA/JPL-Caltech/University of Arizona · HiRISE · PIA11826</span>
+          <span className="moon-credit">{"\n"}</span>
         </figcaption>
       </figure>
     </div>
