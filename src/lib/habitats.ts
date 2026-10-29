@@ -4,6 +4,9 @@ import baseThree from "@/assets/mars.12.jpeg.asset.json";
 import baseFour from "@/assets/mars.123.jpeg.asset.json";
 import baseFive from "@/assets/mars.habit.jpeg.asset.json";
 import baseSix from "@/assets/mars.habitat.jpeg.asset.json";
+import skylineGreenhouse from "@/assets/skyline-crater-greenhouse.jpg.asset.json";
+import polarOneTowers from "@/assets/polar-one-towers.jpg.asset.json";
+import solaceRingSettlement from "@/assets/solace-ring-settlement.jpg.asset.json";
 
 export const habitats = [
   {
@@ -12,7 +15,7 @@ export const habitats = [
     region: "Arcadia Planitia",
     lat: 0.25,
     lon: -0.8,
-    image: baseOne.url,
+    image: solaceRingSettlement.url,
     description: "A quiet refuge on the Southside of Mars, designed to provide the crew with food and nutrition. The Solace base has indoor farms and special greenhouses that help astronauts grow vegetables and other crops in a controlled enviroment.",
     systems: ["Ice extraction", "Subsurface bunks", "Geochemistry lab", "Storm radar"],
     capacity: "15 crew",
@@ -63,7 +66,7 @@ export const habitats = [
     region: "Valles Marineris",
     lat: -0.38,
     lon: -0.32,
-    image: baseFour.url,
+    image: baseOne.url,
     description: "The anchor hub's base is lined with solar panels that provide electricity for lighting, heating, communication and equipment. These technologies provide reliable energy during dust storms when sunlight is limited.",
     systems: ["Rock shielding", "Pressure lifts", "Seismic array", "Cliff observatory"],
     capacity: "24 crew",
@@ -114,7 +117,7 @@ export const habitats = [
     region: "Isidis Planitia",
     lat: 0.19,
     lon: 2.28,
-    image: baseTwo.url,
+    image: skylineGreenhouse.url,
     description: "The skyline Crater Complex is a place that combines innovative architecture with natural protection. Mars's architecture has a futuristic design with advanced technology. Every structure is carefully planned to balance safety, sustainability and comfort.",
     systems: ["Civic commons", "Regional hospital", "Industrial fabrication", "Transit loop"],
     capacity: "180 residents",
@@ -165,7 +168,7 @@ export const habitats = [
     region: "Aeolis Mons",
     lat: -0.09,
     lon: 2.92,
-    image: baseSix.url,
+    image: polarOneTowers.url,
     description: "This station is a laboratory where scientists conduct experiments and study Mars. It is equipped with advanced technology to analyze soil, water and rock samples. Here, researchers can investigate the planet's environment.",
     systems: ["University labs", "Rover fleet", "Emergency center", "Closed-loop farms"],
     capacity: "35 residents",
