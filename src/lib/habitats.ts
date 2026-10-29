@@ -7,6 +7,7 @@ import baseSix from "@/assets/mars.habitat.jpeg.asset.json";
 import skylineGreenhouse from "@/assets/skyline-crater-greenhouse.jpg.asset.json";
 import polarOneTowers from "@/assets/polar-one-towers.jpg.asset.json";
 import solaceRingSettlement from "@/assets/solace-ring-settlement.jpg.asset.json";
+import solarOasisMars from "@/assets/solar-oasis-mars.jpg.asset.json";
 
 export const habitats = [
   {
@@ -151,7 +152,7 @@ export const habitats = [
     region: "Noctis Labyrinthus",
     lat: -0.29,
     lon: -2.52,
-    image: baseOne.url,
+    image: solarOasisMars.url,
     description: "The Solar Oasis is a resource center for water. Water would be one of the most valuable essentials. Future settlers could recycle used water and investigate ways to extract it. Which would be needed for drinking, cooking, plants, producing oxygen...",
     systems: ["Lava-tube shielding", "Hydroponic terraces", "Archive vault", "Geothermal loop"],
     capacity: "20 residents",
