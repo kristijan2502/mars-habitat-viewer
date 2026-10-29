@@ -36,7 +36,7 @@ function MoonsPage() {
         <figcaption>
           <span className="small-label"> THE OUTER MOON</span>
           <h2>Deimos</h2>
-          <p>Deimos is the smaller, more distant moon, taking about 30 hours to circle Mars. A blanket of loose dust and rock gives its surface a smoother appearance than Phobos. These enhanced-color spacecraft views reveal subtle differences in its surface material.</p>
+          <p>Deimos is the smaller of Mars’ two moons. It is a dark, irregularly shaped object covered in craters and a thick layer of dust and rocky debris. Deimos has a weak gravitational pull, allowing dust and debris to escape its surface. It was discovered by Asaph Hall in 1877, and its name means “dread” in Greek mythology. Deimos is located about 23,460 kilometers from Mars. It takes approximately 30 hours to complete one orbit around the planet.</p>
           <span className="moon-credit">{"\n"}</span>
         </figcaption>
       </figure>
