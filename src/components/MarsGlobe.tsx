@@ -21,6 +21,34 @@ function Marker({ habitat, active, onSelect }: { habitat: Habitat; active: boole
   const marker = useRef<THREE.Group>(null);
   const vectors = useMemo(() => ({ anchor: new THREE.Vector3(), center: new THREE.Vector3(), normal: new THREE.Vector3(), camera: new THREE.Vector3() }), []);
   const rubyColor = useMemo(() => getComputedStyle(document.documentElement).getPropertyValue("--habitat-ruby").trim(), []);
+  const gemGeometry = useMemo(() => {
+    const positions: number[] = [];
+    const colors: number[] = [];
+    const base = new THREE.Color(rubyColor);
+    const ring = (radius: number, depth: number) => Array.from({ length: 8 }, (_, i) => {
+      const angle = Math.PI / 8 + i * Math.PI / 4;
+      return [Math.cos(angle) * radius, Math.sin(angle) * radius * 0.85, depth];
+    });
+    const outer = ring(0.095, 0);
+    const table = ring(0.055, 0.028);
+    const triangle = (a: number[], b: number[], c: number[], shade: number) => {
+      positions.push(...a, ...b, ...c);
+      const color = base.clone().multiplyScalar(shade);
+      for (let i = 0; i < 3; i++) colors.push(color.r, color.g, color.b);
+    };
+    for (let i = 0; i < 8; i++) {
+      const next = (i + 1) % 8;
+      triangle([0, 0, 0.028], table[i], table[next], 0.7);
+      triangle(table[i], outer[i], outer[next], i % 2 === 0 ? 0.95 : 0.42);
+      triangle(table[i], outer[next], table[next], i % 2 === 0 ? 0.58 : 0.85);
+      triangle(outer[next], outer[i], [0, 0, -0.035], 0.35);
+    }
+    const geometry = new THREE.BufferGeometry();
+    geometry.setAttribute("position", new THREE.Float32BufferAttribute(positions, 3));
+    geometry.setAttribute("color", new THREE.Float32BufferAttribute(colors, 3));
+    geometry.computeVertexNormals();
+    return geometry;
+  }, [rubyColor]);
   const dotColor = useMemo(() => getComputedStyle(document.documentElement).getPropertyValue("--habitat-anchor").trim(), []);
   const BASE = 1.25;
   useFrame((state) => {
@@ -30,7 +58,7 @@ function Marker({ habitat, active, onSelect }: { habitat: Habitat; active: boole
     vectors.normal.copy(vectors.anchor).sub(vectors.center).normalize();
     state.camera.getWorldPosition(vectors.camera).sub(vectors.center);
     marker.current.visible = isMarkerVisible(vectors.normal, vectors.camera);
-    const pulse = active ? BASE * (1 + 0.16 * Math.sin(state.clock.elapsedTime * 3.4)) : BASE;
+    const pulse = active ? BASE * (1 + 0.04 * Math.sin(state.clock.elapsedTime * 3.4)) : BASE;
     ruby.current.scale.setScalar(pulse);
   });
   const handleClick = (event: { stopPropagation: () => void }) => { event.stopPropagation(); onSelect(habitat); };
@@ -40,18 +68,20 @@ function Marker({ habitat, active, onSelect }: { habitat: Habitat; active: boole
         <group ref={ruby} position={[0, 0.13, 0]}>
           {/* faceted ruby body */}
           <mesh
-            scale={[1, 0.72, 0.5]}
+            geometry={gemGeometry}
             onClick={handleClick}
             onPointerOver={(event) => { event.stopPropagation(); document.body.style.cursor = "pointer"; }}
             onPointerOut={() => { document.body.style.cursor = ""; }}
           >
-            <octahedronGeometry args={[0.095, 0]} />
-            <meshStandardMaterial
-              color={rubyColor}
-              roughness={0.65}
+            <meshPhysicalMaterial
+              vertexColors
+              roughness={0.18}
               metalness={0}
+              clearcoat={0.85}
+              clearcoatRoughness={0.12}
+              ior={1.76}
               emissive={rubyColor}
-              emissiveIntensity={0.65}
+              emissiveIntensity={0.12}
               toneMapped={false}
               flatShading
             />
