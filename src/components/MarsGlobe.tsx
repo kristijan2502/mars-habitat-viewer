@@ -48,17 +48,17 @@ function Marker({ habitat, active, onSelect }: { habitat: Habitat; active: boole
               flatShading
             />
           </mesh>
-          {/* white anchor dot marking the exact habitat location */}
-          <mesh
-            position={[0, -0.155, 0]}
-            onClick={handleClick}
-            onPointerOver={(event) => { event.stopPropagation(); document.body.style.cursor = "pointer"; }}
-            onPointerOut={() => { document.body.style.cursor = ""; }}
-          >
-            <circleGeometry args={[0.021, 24]} />
-            <meshBasicMaterial color="#ffffff" toneMapped={false} />
-          </mesh>
         </group>
+        {/* white anchor dot marking the exact habitat location */}
+        <mesh
+          position={[0, -0.2, 0]}
+          onClick={handleClick}
+          onPointerOver={(event) => { event.stopPropagation(); document.body.style.cursor = "pointer"; }}
+          onPointerOut={() => { document.body.style.cursor = ""; }}
+        >
+          <circleGeometry args={[0.024, 24]} />
+          <meshBasicMaterial color="#ffffff" toneMapped={false} />
+        </mesh>
       </Billboard>
     </group>
   );
