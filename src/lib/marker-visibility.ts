@@ -9,5 +9,5 @@ export function isMarkerVisible(
   const dy = camera.y - normal.y * MARKER_RADIUS;
   const dz = camera.z - normal.z * MARKER_RADIUS;
   const distance = Math.hypot(dx, dy, dz);
-  return distance > 0 && (normal.x * dx + normal.y * dy + normal.z * dz) / distance > 0.28;
+  return distance > 0 && (normal.x * dx + normal.y * dy + normal.z * dz) / distance > 0.5;
 }
