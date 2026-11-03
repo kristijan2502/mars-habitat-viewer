@@ -30,7 +30,7 @@ function Marker({ habitat, active, onSelect }: { habitat: Habitat; active: boole
     vectors.normal.copy(vectors.anchor).sub(vectors.center).normalize();
     state.camera.getWorldPosition(vectors.camera).sub(vectors.center);
     marker.current.visible = isMarkerVisible(vectors.normal, vectors.camera);
-    const pulse = active ? BASE * (1 + 0.16 * Math.sin(state.clock.elapsedTime * 3.4)) : BASE;
+    const pulse = active ? BASE * (1 + 0.04 * Math.sin(state.clock.elapsedTime * 3.4)) : BASE;
     ruby.current.scale.setScalar(pulse);
   });
   const handleClick = (event: { stopPropagation: () => void }) => { event.stopPropagation(); onSelect(habitat); };
@@ -46,12 +46,15 @@ function Marker({ habitat, active, onSelect }: { habitat: Habitat; active: boole
             onPointerOut={() => { document.body.style.cursor = ""; }}
           >
             <octahedronGeometry args={[0.095, 0]} />
-            <meshStandardMaterial
+            <meshPhysicalMaterial
               color={rubyColor}
-              roughness={0.65}
+              roughness={0.18}
               metalness={0}
+              clearcoat={0.85}
+              clearcoatRoughness={0.12}
+              ior={1.76}
               emissive={rubyColor}
-              emissiveIntensity={0.65}
+              emissiveIntensity={0.12}
               toneMapped={false}
               flatShading
             />
