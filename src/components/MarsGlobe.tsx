@@ -38,10 +38,15 @@ function Marker({ habitat, active, onSelect }: { habitat: Habitat; active: boole
     };
     for (let i = 0; i < 8; i++) {
       const next = (i + 1) % 8;
-      triangle([0, 0, 0.028], table[i], table[next], 0.7);
-      triangle(table[i], outer[i], outer[next], i % 2 === 0 ? 0.95 : 0.42);
-      triangle(table[i], outer[next], table[next], i % 2 === 0 ? 0.58 : 0.85);
-      triangle(outer[next], outer[i], [0, 0, -0.035], 0.35);
+      const innerA = table[i];
+      const innerB = table[next];
+      const outerA = outer[i];
+      const outerB = outer[next];
+      if (!innerA || !innerB || !outerA || !outerB) continue;
+      triangle([0, 0, 0.028], innerA, innerB, 0.7);
+      triangle(innerA, outerA, outerB, i % 2 === 0 ? 0.95 : 0.42);
+      triangle(innerA, outerB, innerB, i % 2 === 0 ? 0.58 : 0.85);
+      triangle(outerB, outerA, [0, 0, -0.035], 0.35);
     }
     const geometry = new THREE.BufferGeometry();
     geometry.setAttribute("position", new THREE.Float32BufferAttribute(positions, 3));
