@@ -21,39 +21,6 @@ function Marker({ habitat, active, onSelect }: { habitat: Habitat; active: boole
   const marker = useRef<THREE.Group>(null);
   const vectors = useMemo(() => ({ anchor: new THREE.Vector3(), center: new THREE.Vector3(), normal: new THREE.Vector3(), camera: new THREE.Vector3() }), []);
   const rubyColor = useMemo(() => getComputedStyle(document.documentElement).getPropertyValue("--habitat-ruby").trim(), []);
-  const gemGeometry = useMemo(() => {
-    const positions: number[] = [];
-    const colors: number[] = [];
-    const base = new THREE.Color(rubyColor);
-    const ring = (radius: number, depth: number) => Array.from({ length: 8 }, (_, i) => {
-      const angle = Math.PI / 8 + i * Math.PI / 4;
-      return [Math.cos(angle) * radius, Math.sin(angle) * radius * 0.85, depth];
-    });
-    const outer = ring(0.095, 0);
-    const table = ring(0.055, 0.028);
-    const triangle = (a: number[], b: number[], c: number[], shade: number) => {
-      positions.push(...a, ...b, ...c);
-      const color = base.clone().multiplyScalar(shade);
-      for (let i = 0; i < 3; i++) colors.push(color.r, color.g, color.b);
-    };
-    for (let i = 0; i < 8; i++) {
-      const next = (i + 1) % 8;
-      const innerA = table[i];
-      const innerB = table[next];
-      const outerA = outer[i];
-      const outerB = outer[next];
-      if (!innerA || !innerB || !outerA || !outerB) continue;
-      triangle([0, 0, 0.028], innerA, innerB, 0.7);
-      triangle(innerA, outerA, outerB, i % 2 === 0 ? 0.95 : 0.42);
-      triangle(innerA, outerB, innerB, i % 2 === 0 ? 0.58 : 0.85);
-      triangle(outerB, outerA, [0, 0, -0.035], 0.35);
-    }
-    const geometry = new THREE.BufferGeometry();
-    geometry.setAttribute("position", new THREE.Float32BufferAttribute(positions, 3));
-    geometry.setAttribute("color", new THREE.Float32BufferAttribute(colors, 3));
-    geometry.computeVertexNormals();
-    return geometry;
-  }, [rubyColor]);
   const dotColor = useMemo(() => getComputedStyle(document.documentElement).getPropertyValue("--habitat-anchor").trim(), []);
   const BASE = 1.25;
   useFrame((state) => {
@@ -73,13 +40,14 @@ function Marker({ habitat, active, onSelect }: { habitat: Habitat; active: boole
         <group ref={ruby} position={[0, 0.13, 0]}>
           {/* faceted ruby body */}
           <mesh
-            geometry={gemGeometry}
+            scale={[1, 0.72, 0.5]}
             onClick={handleClick}
             onPointerOver={(event) => { event.stopPropagation(); document.body.style.cursor = "pointer"; }}
             onPointerOut={() => { document.body.style.cursor = ""; }}
           >
+            <octahedronGeometry args={[0.095, 0]} />
             <meshPhysicalMaterial
-              vertexColors
+              color={rubyColor}
               roughness={0.18}
               metalness={0}
               clearcoat={0.85}
