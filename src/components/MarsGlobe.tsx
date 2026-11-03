@@ -1,4 +1,4 @@
-import { Suspense, useRef } from "react";
+import { Suspense, useMemo, useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Billboard, Environment, Lightformer, OrbitControls, useTexture, Stars } from "@react-three/drei";
 import * as THREE from "three";
@@ -12,11 +12,13 @@ type MarsGlobeProps = {
 };
 
 function Marker({ habitat, active, onSelect }: { habitat: Habitat; active: boolean; onSelect: (habitat: Habitat) => void }) {
-  const radius = 2.02;
+  // Keep the entire camera-facing gem outside the atmosphere, at every orbit angle.
+  const radius = 2.18;
   const x = Math.sin(habitat.lon) * Math.cos(habitat.lat) * radius;
   const y = Math.sin(habitat.lat) * radius;
   const z = Math.cos(habitat.lon) * Math.cos(habitat.lat) * radius;
   const ruby = useRef<THREE.Group>(null);
+  const rubyColor = useMemo(() => getComputedStyle(document.documentElement).getPropertyValue("--habitat-ruby").trim(), []);
   const BASE = 1.25;
   useFrame((state) => {
     if (!ruby.current) return;
@@ -26,13 +28,8 @@ function Marker({ habitat, active, onSelect }: { habitat: Habitat; active: boole
   const handleClick = (event: { stopPropagation: () => void }) => { event.stopPropagation(); onSelect(habitat); };
   return (
     <group position={[x, y, z]}>
-      {/* anchor dot holding the gem to the surface */}
-      <mesh onClick={handleClick}>
-        <sphereGeometry args={[0.021, 8, 8]} />
-        <meshBasicMaterial color={active ? "#ffd1dc" : "#ff0f2f"} />
-      </mesh>
       <Billboard>
-        <group ref={ruby} position={[0, 0.24, 0]}>
+        <group ref={ruby}>
           {/* faceted ruby body */}
           <mesh
             scale={[1, 0.72, 0.5]}
@@ -42,23 +39,14 @@ function Marker({ habitat, active, onSelect }: { habitat: Habitat; active: boole
           >
             <octahedronGeometry args={[0.095, 0]} />
             <meshStandardMaterial
-              color={active ? "#ff1f3f" : "#e00033"}
-              roughness={0.1}
-              metalness={0.12}
-              emissive={active ? "#c2002a" : "#70001c"}
-              emissiveIntensity={active ? 2.2 : 1.15}
+              color={rubyColor}
+              roughness={0.65}
+              metalness={0}
+              emissive={rubyColor}
+              emissiveIntensity={0.65}
+              toneMapped={false}
               flatShading
             />
-          </mesh>
-          {/* inner light core */}
-          <mesh scale={[0.42, 0.32, 0.24]} onClick={handleClick}>
-            <octahedronGeometry args={[0.095, 0]} />
-            <meshBasicMaterial color={active ? "#fff0f3" : "#ff3d5e"} transparent opacity={0.92} />
-          </mesh>
-          {/* soft red halo */}
-          <mesh scale={[1.8, 1.3, 0.2]}>
-            <octahedronGeometry args={[0.095, 0]} />
-            <meshBasicMaterial color="#ff1233" transparent opacity={active ? 0.3 : 0.2} blending={THREE.AdditiveBlending} depthWrite={false} />
           </mesh>
         </group>
       </Billboard>
