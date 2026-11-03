@@ -4,6 +4,7 @@ import { Billboard, Environment, Lightformer, OrbitControls, useTexture, Stars }
 import * as THREE from "three";
 import marsMap from "@/assets/mars-surface.jpg.asset.json";
 import { habitats, type Habitat } from "@/lib/habitats";
+import { isMarkerVisible, MARKER_RADIUS } from "@/lib/marker-visibility";
 
 type MarsGlobeProps = {
   mode: "habitats" | "explore";
@@ -12,24 +13,31 @@ type MarsGlobeProps = {
 };
 
 function Marker({ habitat, active, onSelect }: { habitat: Habitat; active: boolean; onSelect: (habitat: Habitat) => void }) {
-  // Keep the entire camera-facing gem outside the atmosphere, at every orbit angle.
-  const radius = 2.18;
+  const radius = MARKER_RADIUS;
   const x = Math.sin(habitat.lon) * Math.cos(habitat.lat) * radius;
   const y = Math.sin(habitat.lat) * radius;
   const z = Math.cos(habitat.lon) * Math.cos(habitat.lat) * radius;
   const ruby = useRef<THREE.Group>(null);
+  const marker = useRef<THREE.Group>(null);
+  const vectors = useMemo(() => ({ anchor: new THREE.Vector3(), center: new THREE.Vector3(), normal: new THREE.Vector3(), camera: new THREE.Vector3() }), []);
   const rubyColor = useMemo(() => getComputedStyle(document.documentElement).getPropertyValue("--habitat-ruby").trim(), []);
+  const dotColor = useMemo(() => getComputedStyle(document.documentElement).getPropertyValue("--habitat-anchor").trim(), []);
   const BASE = 1.25;
   useFrame((state) => {
-    if (!ruby.current) return;
+    if (!ruby.current || !marker.current) return;
+    marker.current.getWorldPosition(vectors.anchor);
+    marker.current.parent?.getWorldPosition(vectors.center);
+    vectors.normal.copy(vectors.anchor).sub(vectors.center).normalize();
+    state.camera.getWorldPosition(vectors.camera).sub(vectors.center);
+    marker.current.visible = isMarkerVisible(vectors.normal, vectors.camera);
     const pulse = active ? BASE * (1 + 0.16 * Math.sin(state.clock.elapsedTime * 3.4)) : BASE;
     ruby.current.scale.setScalar(pulse);
   });
   const handleClick = (event: { stopPropagation: () => void }) => { event.stopPropagation(); onSelect(habitat); };
   return (
-    <group position={[x, y, z]}>
+    <group ref={marker} position={[x, y, z]}>
       <Billboard>
-        <group ref={ruby}>
+        <group ref={ruby} position={[0, 0.13, 0]}>
           {/* faceted ruby body */}
           <mesh
             scale={[1, 0.72, 0.5]}
@@ -51,13 +59,12 @@ function Marker({ habitat, active, onSelect }: { habitat: Habitat; active: boole
         </group>
         {/* white anchor dot marking the exact habitat location */}
         <mesh
-          position={[0, -0.2, 0]}
           onClick={handleClick}
           onPointerOver={(event) => { event.stopPropagation(); document.body.style.cursor = "pointer"; }}
           onPointerOut={() => { document.body.style.cursor = ""; }}
         >
           <circleGeometry args={[0.024, 24]} />
-          <meshBasicMaterial color="#ffffff" toneMapped={false} />
+          <meshBasicMaterial color={dotColor} toneMapped={false} />
         </mesh>
       </Billboard>
     </group>
