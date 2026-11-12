@@ -104,7 +104,7 @@ export const habitats = [
     image: baseSix.url,
     description: "Horizon City is a vision of humanity's future  on Mars, it is a large settlement designed for everyday life. It has residential zones, medical  centers, community spaces, it offers a place where people can live, work and build a new society beneath the Martian sky.\n\n",
     systems: ["Thermal drills", "Water refinery", "Heat recovery", "Buried tunnels"],
-    capacity: "120 crew",
+    capacity: "120 residents",
     score: 90,
     solar: "566 W/m²",
     ice: "99%",
